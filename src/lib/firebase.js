@@ -2,11 +2,11 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+require("dotenv").config();
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey:
-    "AIzaSyBueVZvjIcZm75JU6XGu8Uwx_EG6AbqWHM",
+  apiKey: GEMINI_API_KEY,
   authDomain:
     "adhd-notes-e8e1d.firebaseapp.com",
   projectId: "adhd-notes-e8e1d",
