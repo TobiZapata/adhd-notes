@@ -7,7 +7,8 @@ const ai = new GoogleGenAI({
 
 export async function POST(req) {
   try {
-    const { prompt } = await req.json();
+    const { prompt, messages = [] } =
+      await req.json();
 
     if (!prompt) {
       return NextResponse.json(
@@ -15,6 +16,17 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+
+    const historyText = messages
+      .map(
+        (m) =>
+          `${
+            m.role === "user"
+              ? "Usuario"
+              : "Asistente"
+          }: ${m.content}`
+      )
+      .join("\n");
 
     // 🔧 Prompt para que responda SIEMPRE en JSON
     const systemPrompt = `
@@ -37,8 +49,10 @@ export async function POST(req) {
 
       Cada bloque representa una parte del día o tema general.
       Cada tarjeta pertenece a un bloque.
+      Conversación reciente:
+      "${historyText}"
 
-      Ahora generá tarjetas según la siguiente petición del usuario:
+      genera tarjetas para el usuario teniendo en cuenta el contexto previo y esta nueva peticion:
       "${prompt}"
     `;
 
