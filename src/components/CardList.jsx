@@ -1,5 +1,8 @@
 "use client";
-import { useState } from "react";
+import {
+  useState,
+  useEffect,
+} from "react";
 
 export default function CardList({
   cards,
@@ -8,6 +11,11 @@ export default function CardList({
     editableCards,
     setEditableCards,
   ] = useState(cards);
+
+  // 🔄 Se actualiza cuando Dashboard recibe nuevas tarjetas
+  useEffect(() => {
+    setEditableCards(cards);
+  }, [cards]);
 
   const handleEdit = (index) => {
     const updated = [...editableCards];
@@ -47,7 +55,7 @@ export default function CardList({
         <div
           key={i}
           className={`p-4 rounded-xl shadow ${
-            colorMap[card.color] ||
+            colorMap[card?.color] ||
             "bg-gray-300"
           }`}
         >

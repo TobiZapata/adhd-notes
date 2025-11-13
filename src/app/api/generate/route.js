@@ -51,8 +51,8 @@ export async function POST(req) {
       Cada tarjeta pertenece a un bloque.
       Conversación reciente:
       "${historyText}"
-
-      genera tarjetas para el usuario teniendo en cuenta el contexto previo y esta nueva peticion:
+      IMPORTANTE: RESPONDER SOLO CON LA ESTRUCTURA JSON SOLICITADA, TU RESPUESTA AL USUARIO IRÁ EN "message".
+      Genera tarjetas para el usuario teniendo en cuenta el contexto previo y esta nueva peticion:
       "${prompt}"
     `;
 
