@@ -43,10 +43,9 @@ export default function CardList({
   };
 
   const colorMap = {
-    blue: "bg-blue-500",
-    green: "bg-green-500",
-    yellow: "bg-yellow-400",
-    red: "bg-red-500",
+    blue: "bg-blue-600",
+    green: "bg-green-600",
+    yellow: "bg-yellow-600",
   };
 
   return (

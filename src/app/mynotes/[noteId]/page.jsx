@@ -68,7 +68,7 @@ export default function NoteDetail() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-10">
+    <div className="max-w-5xl mx-auto px-6 py-10">
       <Link
         href="/mynotes"
         className="text-blue-600 underline mb-4 inline-block"
@@ -76,8 +76,9 @@ export default function NoteDetail() {
         ← Volver a mis notas
       </Link>
 
-      <h1 className="text-2xl font-bold mb-6">
-        {note.title || "Set sin título"}
+      <h1 className="text-2xl text-center font-bold mb-6">
+        {note.name.toUpperCase() ||
+          "Set sin título"}
       </h1>
 
       {note.blocks?.length ? (
