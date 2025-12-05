@@ -5,6 +5,20 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY,
 });
 
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin":
+        "*", // O pon la URL de tu app si la sabes, "*" permite a todos
+      "Access-Control-Allow-Methods":
+        "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers":
+        "Content-Type, Authorization",
+    },
+  });
+}
+
 export async function POST(req) {
   try {
     const { prompt, messages = [] } =
@@ -101,7 +115,17 @@ export async function POST(req) {
       };
     }
 
-    return NextResponse.json(data);
+    return NextResponse.json(data, {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin":
+          "*", // 👈 PERMITE QUE EXPO SE CONECTE
+        "Access-Control-Allow-Methods":
+          "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers":
+          "Content-Type, Authorization",
+      },
+    });
   } catch (error) {
     console.error(
       "Error en /api/generate:",
@@ -109,7 +133,13 @@ export async function POST(req) {
     );
     return NextResponse.json(
       { error: error.message },
-      { status: 500 }
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin":
+            "*",
+        }, // 👈 También en el error
+      }
     );
   }
 }
